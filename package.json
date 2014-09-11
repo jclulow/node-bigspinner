@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "Because if you're going to hide behind a spinner, it should at least be a Big Spinner.",
   "main": "index.js",
+  "bin": {
+    "bigspinner": "./examples/spin.js"
+  },
   "directories": {
     "example": "examples"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
