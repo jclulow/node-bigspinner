@@ -1,0 +1,29 @@
+{
+  "name": "bigspinner",
+  "version": "1.0.0",
+  "description": "Because if you're going to hide behind a spinner, it should at least be a Big Spinner.",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jclulow/node-bigspinner.git"
+  },
+  "keywords": [
+    "terminal",
+    "spinner",
+    "spin",
+    "console",
+    "curses"
+  ],
+  "author": "Joshua M. Clulow <josh@sysmgr.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jclulow/node-bigspinner/issues"
+  },
+  "homepage": "https://github.com/jclulow/node-bigspinner"
+}
