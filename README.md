@@ -14,7 +14,11 @@ var mod_bigspinner = require('bigspinner');
  */
 var SPINNER = mod_bigspinner.createSpinner({
     delay: 250,
-    stream: process.stderr
+    stream: process.stderr,
+    height: 8,
+    width: 8,
+    hideCursor: true,
+    fontChar: '#'
 });
 
 /*
