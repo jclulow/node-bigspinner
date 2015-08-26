@@ -16,17 +16,33 @@ create_font_character(w, h, c, x0, y0, x1, y1)
 }
 
 function
-create_font(w, h, c)
+create_font(w, h, c, p)
 {
-	var h2 = Math.floor(h / 2);
-	var w2 = Math.floor(w / 2);
+	var xb = Math.round(w / 2) - 1;
+	var yb = Math.round(h / 2) - 1;
 
-	var font = [
-		create_font_character(w, h, c, 0, h2, w - 1, h2),
-		create_font_character(w, h, c, 0, 0, w - 1, h - 1),
-		create_font_character(w, h, c, w2, 0, w2, h - 1),
-		create_font_character(w, h, c, 0, h - 1, w - 1, 0)
-	];
+	if (p <= 4) {
+		return ([
+			create_font_character(w, h, c, 0, yb, w - 1, yb),
+			create_font_character(w, h, c, 0, 0, w - 1, h - 1),
+			create_font_character(w, h, c, xb, 0, xb, h - 1),
+			create_font_character(w, h, c, 0, h - 1, w - 1, 0)
+		]);
+	}
+
+	var font = [];
+	var pp = Math.floor(p / 2);
+	var i;
+	for (i = 0; i < pp; i++) {
+		var xoff = 2 * Math.round(xb * (i / pp)) - xb;
+		font.push(create_font_character(w, h, c, xb + xoff, 0,
+		    xb - xoff, h - 1));
+	}
+	for (i = 0; i < pp; i++) {
+		var yoff = 2 * Math.round(yb * (i / pp)) - yb;
+		font.push(create_font_character(w, h, c, 0, yb - yoff,
+		    w - 1, yb + yoff));
+	}
 
 	return (font);
 }
@@ -44,8 +60,9 @@ wblank(font, str, n)
 	 * Clear out the region used by the spinner.
 	 */
 	var line = '';
-	while (line.length < font[0][0].length)
+	while (line.length < font[0][0].length) {
 		line += ' ';
+	}
 	for (var i = 0; i < font[0].length; i++) {
 		w(str, line + '\n');
 	}
@@ -91,9 +108,10 @@ BigSpinner(opts)
 	self.bs_height = opts.height || 8;
 	self.bs_width = opts.width || 8;
 	self.bs_font_char = opts.fontChar || '#';
+	self.bs_positions = opts.positions || 4;
 
 	self.bs_font = create_font(self.bs_width, self.bs_height,
-	    self.bs_font_char);
+	    self.bs_font_char, self.bs_positions);
 
 	self.bs_delay = opts.delay || 250;
 	self.bs_destroyed = false;

@@ -1,6 +1,6 @@
 {
   "name": "bigspinner",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Because if you're going to hide behind a spinner, it should at least be a Big Spinner.",
   "main": "index.js",
   "directories": {
